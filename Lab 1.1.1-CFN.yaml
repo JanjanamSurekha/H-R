@@ -7,5 +7,5 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref '${sbuck}-example-bucketname'
+      BucketName: !Ref '${StringParam}-example-bucketname'
 
