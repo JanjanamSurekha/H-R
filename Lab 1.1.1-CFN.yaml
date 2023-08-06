@@ -3,9 +3,8 @@ Description: "Template for S3 Bucket"
 Parameters:
   Sparam:
   Type: String
-  Default: ght1
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub '${Sparam}-example-bucketname'
+      BucketName: !Ref Sparam
