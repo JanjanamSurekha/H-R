@@ -1,5 +1,8 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Template for S3 Bucket"
+Parameters:
+  Sparam:
+  Type: String
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
