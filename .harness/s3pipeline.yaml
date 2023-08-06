@@ -46,4 +46,4 @@ pipeline:
       type: String
       description: ""
       required: false
-      value: surekha12345
+      value: <+input>
