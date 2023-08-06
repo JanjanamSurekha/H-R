@@ -4,4 +4,4 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "S3Bucket-${bucketb}
+      BucketName: !Sub "S3Bucket-${bucketb}"
