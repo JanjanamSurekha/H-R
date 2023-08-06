@@ -1,11 +1,8 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Template for S3 Bucket"
-Parameters:
-  sbuck:
-    Type: String
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref '${StringParam}-example-bucketname'
+      BucketName: !Sub "S3Bucket-${bucketb}
 
