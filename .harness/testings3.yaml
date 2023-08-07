@@ -35,6 +35,10 @@ pipeline:
                               gitFetchType: Branch
                               branch: main
                       roleArn: ""
+                      parameterOverrides:
+                        - name: bucketb
+                          value: <+input>
+                          type: String
                   timeout: 10m
         tags: {}
   variables:
