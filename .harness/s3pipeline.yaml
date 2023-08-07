@@ -36,7 +36,7 @@ pipeline:
                               branch: main
                       roleArn: ""
                       parameterOverrides:
-                        - name: sbucket
+                        - name: bucketb
                           value: sitara12345
                           type: String
                   timeout: 10m
