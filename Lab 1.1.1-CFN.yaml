@@ -7,5 +7,5 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref ${sbucket}
+      BucketName: !Ref ${InstanceTypeParameter}
       
