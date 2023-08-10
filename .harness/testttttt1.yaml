@@ -64,7 +64,7 @@ pipeline:
                     source:
                       type: Inline
                       spec:
-                        script: aws s3 cp test1,2.zip s3://ssskkk2/
+                        script: <+input>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
