@@ -13,7 +13,7 @@ Resources:
   User:
     Type: AWS::IAM::User
     Properties:
-      BucketName: newuser
+      UserName: newuser
   UserPolicy:
     Type: AWS::IAM::Policy
     Properties:
