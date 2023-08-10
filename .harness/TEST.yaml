@@ -1,0 +1,36 @@
+pipeline:
+  name: TEST
+  identifier: TEST
+  projectIdentifier: Test
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: GitHub
+        build: <+input>
+  stages:
+    - stage:
+        name: B-S
+        identifier: BS
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Arm64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: S3Upload
+                  name: S3Upload
+                  identifier: S3Upload
+                  spec:
+                    connectorRef: AWS
+                    region: us-east-1
+                    bucket: <+input>
+                    sourcePath: test1,2.zip
