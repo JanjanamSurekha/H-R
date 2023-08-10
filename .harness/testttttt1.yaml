@@ -41,9 +41,39 @@ pipeline:
                           type: String
                   timeout: 10m
         tags: {}
+    - stage:
+        name: artifacts
+        identifier: artifacts
+        type: CI
+        spec:
+          cloneCodebase: true
+          caching:
+            enabled: false
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Docker
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: S3Upload
+                  name: S3Upload
+                  identifier: S3Upload
+                  spec:
+                    connectorRef: AWS
+                    region: us-east-1
+                    bucket: <+input>
+                    sourcePath: test1,2.zip
   variables:
     - name: bucketb
       type: String
       description: ""
       required: false
       value: <+input>
+  properties:
+    ci:
+      codebase:
+        connectorRef: GitHub
+        build: <+input>
