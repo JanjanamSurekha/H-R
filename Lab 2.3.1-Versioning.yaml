@@ -1,14 +1,13 @@
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "S3 Versioning"
 Parameters:
-  BucketName:
+  bucketb:
     Type: String
-    Default: stelligent-u-janjanam.surekha.labs
 Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Ref BucketName
+      BucketName: !Ref bucketb
       VersioningConfiguration:
         Status: Enabled
 
