@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "S3 Versioning"
+Parameters:
+  bucketb:
+    Type: String
+Resources:
+  S3Bucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Ref bucketb
+      VersioningConfiguration:
+        Status: Enabled
+  User:
+    Type: AWS::IAM::User
+    Properties:
+      BucketName: newuser
+  UserPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: S3UploadPolicy
+      PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                - "s3:PutObject"
+                Resource: "*" 
+      UserName: !Ref User
+  
+
+
