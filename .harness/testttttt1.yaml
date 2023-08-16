@@ -59,7 +59,7 @@ pipeline:
                   name: ShellScript_2
                   identifier: ShellScript_2
                   spec:
-                    shell: Bash
+                    shell: PowerShell
                     onDelegate: true
                     source:
                       type: Inline
