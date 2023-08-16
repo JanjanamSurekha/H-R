@@ -69,38 +69,9 @@ pipeline:
                     outputVariables: []
                   timeout: 10m
         tags: {}
-    - stage:
-        name: b-s
-        identifier: bs
-        description: ""
-        type: CI
-        spec:
-          cloneCodebase: true
-          platform:
-            os: Linux
-            arch: Amd64
-          runtime:
-            type: Cloud
-            spec: {}
-          execution:
-            steps:
-              - step:
-                  type: S3Upload
-                  name: S3Upload_1
-                  identifier: S3Upload_1
-                  spec:
-                    connectorRef: AWS
-                    region: us-east-1
-                    bucket: <+input>
-                    sourcePath: <+input>
   variables:
     - name: bucketb
       type: String
       description: ""
       required: false
       value: <+input>
-  properties:
-    ci:
-      codebase:
-        connectorRef: GitHub
-        build: <+input>
