@@ -67,7 +67,6 @@ pipeline:
                         script: |-
                           GITHUB_URL="https://github.com/JanjanamSurekha/H-R/blob/main/test1%2C2.zip"
                           S3_BUCKET="jvvtttssss1"
-                          aws configure
                           aws s3 cp test1,2.zip s3://$S3_BUCKET 
                     environmentVariables: []
                     outputVariables: []
