@@ -65,12 +65,8 @@ pipeline:
                       type: Inline
                       spec:
                         script: |-
-                          pip install awscli
-                          chmod +x install_aws_cli.sh
-                          ./install_aws_cli.sh
-                          GITHUB_URL="https://github.com/JanjanamSurekha/H-R/blob/main/test1%2C2.zip"
-                          S3_BUCKET="jvvtttssss1"
-                          aws s3 cp test1,2.zip "s3://$S3_BUCKET"
+                          sudo apt-get update
+                          sudo apt-get install awscli
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
