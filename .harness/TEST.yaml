@@ -33,4 +33,4 @@ pipeline:
                     connectorRef: AWS
                     region: us-east-1
                     bucket: <+input>
-                    sourcePath: test1,2.zip
+                    sourcePath: <+input>
