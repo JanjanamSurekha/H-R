@@ -59,12 +59,12 @@ pipeline:
                   name: ShellScript_2
                   identifier: ShellScript_2
                   spec:
-                    shell: PowerShell
+                    shell: Bash
                     onDelegate: true
                     source:
                       type: Inline
                       spec:
-                        script: Import-Module AWSPowerShell
+                        script: <+input>
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
