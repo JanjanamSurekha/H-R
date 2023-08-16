@@ -54,6 +54,24 @@ pipeline:
                     environmentVariables: []
                     outputVariables: []
                   timeout: 10m
+              - step:
+                  type: ShellScript
+                  name: ShellScript_2
+                  identifier: ShellScript_2
+                  spec:
+                    shell: Bash
+                    onDelegate: true
+                    source:
+                      type: Inline
+                      spec:
+                        script: |-
+                          GITHUB_URL="https://github.com/JanjanamSurekha/H-R/blob/main/test1%2C2.zip"
+                          S3_BUCKET="jvvtttssss1"
+                          aws configure
+                          aws s3 cp test1,2.zip s3://$S3_BUCKET 
+                    environmentVariables: []
+                    outputVariables: []
+                  timeout: 10m
         tags: {}
   variables:
     - name: bucketb
