@@ -80,14 +80,14 @@ pipeline:
             os: Linux
             arch: Amd64
           runtime:
-            type: Docker
+            type: Cloud
             spec: {}
           execution:
             steps:
               - step:
                   type: S3Upload
-                  name: S3Upload
-                  identifier: S3Upload
+                  name: S3Upload_1
+                  identifier: S3Upload_1
                   spec:
                     connectorRef: AWS
                     region: us-east-1
