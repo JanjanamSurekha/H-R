@@ -40,7 +40,7 @@ pipeline:
                           value: <+input>
                           type: String
                         - name: SubnetIds
-                          value: <+input>
+                          value: <+env.variables.SubnetId>
                           type: String
                   timeout: 10m
         tags: {}
