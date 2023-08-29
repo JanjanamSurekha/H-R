@@ -35,5 +35,12 @@ pipeline:
                               gitFetchType: Branch
                               branch: main
                       roleArn: ""
+                      parameterOverrides:
+                        - name: VpcId
+                          value: <+input>
+                          type: String
+                        - name: SubnetIds
+                          value: <+input>
+                          type: String
                   timeout: 10m
         tags: {}
