@@ -1,0 +1,64 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template for creating ECS Cluster"
+Parameters:
+  ECSClusterName:
+    Type: String
+    Default: DemoCluster1
+  ECSServiceName:
+    Type: String
+    Default: serviceee1
+  VpcId:
+    Type: String
+    Default: 'vpc-0fc2dc01bef95b35d'
+  SubnetIds:
+    Type: CommaDelimitedList
+    Default: subnet-024e5018a41c3a608,subnet-08131d4ff0a2d94a0,subnet-01bc965787a72c0a8,subnet-08615ec9046e09da0
+Resources:
+  ECSCluster:
+    Type: AWS::ECS::Cluster
+    Properties: 
+      CapacityProviders: 
+        - FARGATE
+      ClusterName: !Ref ECSClusterName
+  ECSTaskDefnition:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions: 
+        - Name: container
+          Image: nginx:latest
+      Cpu: "256"
+      Family: ttttttttt1
+      Memory: "512"
+      NetworkMode: awsvpc
+      RequiresCompatibilities: 
+        - FARGATE
+  ECSService:
+    Type: AWS::ECS::Service
+    Properties: 
+      ServiceName: !Ref ECSServiceName
+      Cluster: !Ref ECSClusterName
+      DesiredCount: 1
+      LaunchType: FARGATE
+      SchedulingStrategy: REPLICA
+      PlatformVersion: LATEST
+      NetworkConfiguration: 
+          AwsvpcConfiguration:
+              AssignPublicIp: ENABLED
+              SecurityGroups: 
+                - sg-0a763f0309ed99d8b
+              Subnets: 
+                - subnet-024e5018a41c3a608
+      DeploymentConfiguration:
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+        DeploymentCircuitBreaker:
+          Enable: true
+          Rollback: true
+      DeploymentController:
+        Type: ECS
+      ServiceConnectConfiguration:
+        Enabled: false
+      Tags: []
+      EnableECSManagedTags: true
+      TaskDefinition: !Ref ECSTaskDefnition
+  
