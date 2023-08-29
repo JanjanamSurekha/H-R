@@ -3,10 +3,10 @@ Description: "Template for creating ECS Cluster"
 Parameters:
   ECSClusterName:
     Type: String
-    Default: DemoCluster1
+    Default: DemoCluster2
   ECSServiceName:
     Type: String
-    Default: serviceee1
+    Default: serviceee2
   VpcId:
     Type: String
     Default: 'vpc-0fc2dc01bef95b35d'
@@ -27,7 +27,7 @@ Resources:
         - Name: container
           Image: nginx:latest
       Cpu: "256"
-      Family: ttttttttt1
+      Family: ttttttttt2
       Memory: "512"
       NetworkMode: awsvpc
       RequiresCompatibilities: 
