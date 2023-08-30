@@ -9,10 +9,10 @@ Parameters:
     Default: serviceee2
   VpcId:
     Type: String
-    Default: 'vpc-0aaf9987bc47a01ea'
+    Default: ''
   SubnetIds:
-    Type: CommaDelimitedList
-    Default: subnet-01328ea954ea7402b,subnet-06e49741f9d32519d,subnet-0a3af24f9c4f6bca0
+    Type: String
+    Default: ''
 Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
