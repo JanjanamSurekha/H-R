@@ -48,7 +48,7 @@ pipeline:
                           value: <+input>
                           type: String
                         - name: SubnetIds
-                          value: <+input>
+                          value: <+env.variables.SubnetIds>
                           type: String
                   timeout: 10m
             rollbackSteps: []
