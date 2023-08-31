@@ -9,10 +9,13 @@ Parameters:
     Default: serviceee2
   VpcId:
     Type: String
-    Default: 'vpc-0aaf9987bc47a01ea'
+    Default: ' '
   SubnetIds:
     Type: String
-    Default: subnet-01328ea954ea7402b
+    Default: ' '
+  SecurityGroupIds:
+    Type: String
+    Default: ' '
 Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
@@ -50,10 +53,8 @@ Resources:
       NetworkConfiguration: 
           AwsvpcConfiguration:
               AssignPublicIp: ENABLED
-              SecurityGroups: 
-                - sg-07f4fd0a9f7d2befe
-              Subnets: 
-                - subnet-01328ea954ea7402b
+              SecurityGroups: !Ref SecurityGroupIds
+              Subnets: !Ref SubnetIds
       DeploymentConfiguration:
         MaximumPercent: 200
         MinimumHealthyPercent: 100
