@@ -9,13 +9,10 @@ Parameters:
     Default: serviceee2
   VpcId:
     Type: String
-    Default: ''
+    Default: 'vpc-0aaf9987bc47a01ea'
   SubnetIds:
     Type: String
-    Default: ''
-  SubnetIds:
-    Type: String
-    Default: ''
+    Default: subnet-01328ea954ea7402b
 Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
@@ -23,6 +20,9 @@ Resources:
       CapacityProviders: 
         - FARGATE
       ClusterName: !Ref ECSClusterName
+      Tags:
+        - Key: "ECS"
+          Value: "Cluster"
   ECSTaskDefnition:
     Type: AWS::ECS::TaskDefinition
     Properties:
@@ -35,6 +35,9 @@ Resources:
       NetworkMode: awsvpc
       RequiresCompatibilities: 
         - FARGATE
+      Tags:
+        - Key: "ECS"
+          Value: "Task"
   ECSService:
     Type: AWS::ECS::Service
     Properties: 
@@ -48,8 +51,9 @@ Resources:
           AwsvpcConfiguration:
               AssignPublicIp: ENABLED
               SecurityGroups: 
-                - sg-0a763f0309ed99d8b
-              Subnets: !Ref SubnetIds
+                - sg-07f4fd0a9f7d2befe
+              Subnets: 
+                - subnet-01328ea954ea7402b
       DeploymentConfiguration:
         MaximumPercent: 200
         MinimumHealthyPercent: 100
@@ -60,7 +64,9 @@ Resources:
         Type: ECS
       ServiceConnectConfiguration:
         Enabled: false
-      Tags: []
       EnableECSManagedTags: true
       TaskDefinition: !Ref ECSTaskDefnition
+      Tags:
+        - Key: "ECS"
+          Value: "Service"
   
