@@ -13,6 +13,9 @@ Parameters:
   SubnetIds:
     Type: String
     Default: ''
+  SubnetIds:
+    Type: String
+    Default: ''
 Resources:
   ECSCluster:
     Type: AWS::ECS::Cluster
@@ -45,7 +48,7 @@ Resources:
           AwsvpcConfiguration:
               AssignPublicIp: ENABLED
               SecurityGroups: 
-                - sg-07f4fd0a9f7d2befe
+                - sg-0a763f0309ed99d8b
               Subnets: !Ref SubnetIds
       DeploymentConfiguration:
         MaximumPercent: 200
