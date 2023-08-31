@@ -46,8 +46,7 @@ Resources:
               AssignPublicIp: ENABLED
               SecurityGroups: 
                 - sg-07f4fd0a9f7d2befe
-              Subnets: 
-                - !Ref SubnetIds
+              Subnets: !Ref SubnetIds
       DeploymentConfiguration:
         MaximumPercent: 200
         MinimumHealthyPercent: 100
