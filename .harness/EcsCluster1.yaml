@@ -1,0 +1,59 @@
+pipeline:
+  name: Ecs-Cluster-1
+  identifier: EcsCluster1
+  projectIdentifier: AWS
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: Dev-Deploy
+        identifier: DevDeploy
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: ECS
+          service:
+            serviceRef: Cluster1
+          environment:
+            environmentRef: Dev1
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: AWSDevuseast1
+                inputs:
+                  identifier: AWSDevuseast1
+                  type: ECS
+                  spec:
+                    cluster: <+input>
+          execution:
+            steps:
+              - step:
+                  type: CreateStack
+                  name: CreateStack_1
+                  identifier: CreateStack_1
+                  spec:
+                    provisionerIdentifier: ECS
+                    configuration:
+                      stackName: sssss-1
+                      connectorRef: AWS
+                      region: us-east-1
+                      templateFile:
+                        type: Remote
+                        spec:
+                          store:
+                            type: Github
+                            spec:
+                              paths:
+                                - 22_task_harness.yaml
+                              connectorRef: GitHub
+                              gitFetchType: Branch
+                              branch: main
+                      roleArn: ""
+                  timeout: 10m
+            rollbackSteps: []
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
