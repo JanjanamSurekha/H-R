@@ -48,6 +48,19 @@ pipeline:
                               gitFetchType: Branch
                               branch: main
                       roleArn: ""
+                      parameterOverrides:
+                        - name: VpcId
+                          value: <+input>
+                          type: String
+                        - name: SubnetIds
+                          value: <+env.variables.SubnetIds>
+                          type: String
+                        - name: ECSClusterName
+                          value: <+input>
+                          type: String
+                        - name: ECSServiceName
+                          value: <+input>
+                          type: String
                   timeout: 10m
             rollbackSteps: []
         tags: {}
