@@ -1,0 +1,37 @@
+pipeline:
+  name: Lambda
+  identifier: Lambda
+  projectIdentifier: AWS
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: Deploy
+        identifier: Deploy
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: AwsLambda
+          service:
+            serviceRef: Lambda_Service
+          environment:
+            environmentRef: Devuseast1
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: Dev
+          execution:
+            steps:
+              - step:
+                  type: AwsLambdaDeploy
+                  name: AwsLambdaDeploy
+                  identifier: AwsLambdaDeploy
+                  spec: {}
+                  timeout: 10m
+            rollbackSteps: []
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
