@@ -22,27 +22,10 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: CreateStack
-                  name: CreateStack_1
-                  identifier: CreateStack_1
-                  spec:
-                    provisionerIdentifier: Lambda
-                    configuration:
-                      stackName: s-1
-                      connectorRef: AWS
-                      region: us-east-1
-                      templateFile:
-                        type: Remote
-                        spec:
-                          store:
-                            type: Github
-                            spec:
-                              paths:
-                                - 3_task.yaml
-                              connectorRef: GitHub
-                              gitFetchType: Branch
-                              branch: main
-                      roleArn: ""
+                  type: AwsLambdaDeploy
+                  name: AwsLambdaDeploy
+                  identifier: AwsLambdaDeploy
+                  spec: {}
                   timeout: 10m
             rollbackSteps: []
         tags: {}
