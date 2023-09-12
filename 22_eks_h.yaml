@@ -1,0 +1,75 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "Template for creating EKS Cluster"
+Parameters:
+  EKSClusterName:
+    Type: String
+    Default: ' '
+  EKSNodeGroupName:
+    Type: String
+    Default: ' '
+  SubnetId1:
+    Type: String
+    Default: ' '
+  SubnetId2:
+    Type: String
+    Default: ' '
+  VpcId:
+    Type: String
+    Default: ' '
+Resources:
+  EKSCluster:
+    Type: AWS::EKS::Cluster
+    Properties: 
+      Name: !Ref EKSClusterName
+      ResourcesVpcConfig: 
+        SubnetIds: 
+          - !Ref SubnetId1
+          - !Ref SubnetId2
+      RoleArn: !GetAtt EKSClusterRole.Arn
+      Tags:
+        - Key: "EKS"
+          Value: "Cluster"
+      Version: "1.27"
+  EKSClusterRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: eks.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns: 
+        - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+        - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
+  EKSNodeGroup:
+    Type: AWS::EKS::Nodegroup
+    Properties: 
+      ClusterName: !Ref EKSCluster
+      NodegroupName: !Ref EKSNodeGroupName
+      NodeRole: !GetAtt EKSNodeRole.Arn
+      ScalingConfig: 
+          DesiredSize: "1"
+          MaxSize: "1"
+          MinSize: "1"
+      Subnets: 
+          - !Ref SubnetId1
+          - !Ref SubnetId2
+      Tags: 
+        EKS: Node-Group
+    DependsOn: EKSCluster
+  EKSNodeRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: ec2.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
