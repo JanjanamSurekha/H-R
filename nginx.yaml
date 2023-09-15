@@ -21,3 +21,4 @@ spec:
         image: nginx:1.13
         ports:
         - containerPort: 80
+        
