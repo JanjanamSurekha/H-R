@@ -1,0 +1,47 @@
+pipeline:
+  name: Kube
+  identifier: Kube
+  projectIdentifier: EKS
+  orgIdentifier: default
+  tags: {}
+  stages:
+    - stage:
+        name: Deploy
+        identifier: Deploy
+        description: ""
+        type: Deployment
+        spec:
+          deploymentType: Kubernetes
+          service:
+            serviceRef: EksService
+          environment:
+            environmentRef: Devuseast1
+            deployToAll: false
+            infrastructureDefinitions:
+              - identifier: Dev
+          execution:
+            steps:
+              - step:
+                  type: K8sBlueGreenDeploy
+                  name: K8sBlueGreenDeploy_1
+                  identifier: K8sBlueGreenDeploy_1
+                  spec:
+                    skipDryRun: false
+                    pruningEnabled: false
+                    skipUnchangedManifest: false
+                  timeout: 10m
+            rollbackSteps:
+              - step:
+                  name: Swap primary with stage service
+                  identifier: rollbackBgSwapServices
+                  type: K8sBGSwapServices
+                  timeout: 10m
+                  spec:
+                    skipDryRun: false
+        tags: {}
+        failureStrategies:
+          - onFailure:
+              errors:
+                - AllErrors
+              action:
+                type: StageRollback
