@@ -15,10 +15,10 @@ pipeline:
           service:
             serviceRef: EksService
           environment:
-            environmentRef: Devuseast1
+            environmentRef: Devvvvuseast1
             deployToAll: false
             infrastructureDefinitions:
-              - identifier: Dev
+              - identifier: Devvvv
           execution:
             steps:
               - step:
