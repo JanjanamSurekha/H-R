@@ -22,13 +22,15 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: K8sBlueGreenDeploy
-                  name: K8sBlueGreenDeploy_1
-                  identifier: K8sBlueGreenDeploy_1
+                  type: K8sCanaryDeploy
+                  name: K8sCanaryDeploy_1
+                  identifier: K8sCanaryDeploy_1
                   spec:
                     skipDryRun: false
-                    pruningEnabled: false
-                    skipUnchangedManifest: false
+                    instanceSelection:
+                      type: Count
+                      spec:
+                        count: 1
                   timeout: 10m
             rollbackSteps:
               - step:
