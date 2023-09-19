@@ -22,15 +22,34 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: K8sCanaryDeploy
-                  name: K8sCanaryDeploy_1
-                  identifier: K8sCanaryDeploy_1
+                  type: CreateStack
+                  name: CreateStack
+                  identifier: CreateStack
                   spec:
-                    skipDryRun: false
-                    instanceSelection:
-                      type: Count
-                      spec:
-                        count: 1
+                    provisionerIdentifier: EKS
+                    configuration:
+                      stackName: Eks-Harness
+                      connectorRef: AWS
+                      region: us-east-1
+                      templateFile:
+                        type: Remote
+                        spec:
+                          store:
+                            type: Github
+                            spec:
+                              paths:
+                                - 22_eks_h.yaml
+                              connectorRef: GitHub
+                              gitFetchType: Branch
+                              branch: main
+                      roleArn: ""
+                      parameterOverrides:
+                        - name: EKSClusterName
+                          value: <+input>
+                          type: String
+                        - name: EKSNodeGroupName
+                          value: <+input>
+                          type: String
                   timeout: 10m
             rollbackSteps:
               - step:
