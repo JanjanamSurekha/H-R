@@ -22,13 +22,14 @@ pipeline:
           execution:
             steps:
               - step:
-                  name: Rollout Deployment
-                  identifier: rolloutDeployment
-                  type: K8sRollingDeploy
-                  timeout: 10m
+                  type: K8sBlueGreenDeploy
+                  name: K8sBlueGreenDeploy_1
+                  identifier: K8sBlueGreenDeploy_1
                   spec:
                     skipDryRun: false
                     pruningEnabled: false
+                    skipUnchangedManifest: false
+                  timeout: 10m
             rollbackSteps:
               - step:
                   name: Rollback Rollout Deployment
