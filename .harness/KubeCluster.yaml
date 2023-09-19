@@ -50,6 +50,15 @@ pipeline:
                         - name: EKSNodeGroupName
                           value: <+input>
                           type: String
+                        - name: VpcId
+                          value: <+input>
+                          type: String
+                        - name: SubnetId1
+                          value: <+input>
+                          type: String
+                        - name: SubnetId2
+                          value: <+input>
+                          type: String
                   timeout: 10m
             rollbackSteps:
               - step:
