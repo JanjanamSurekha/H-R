@@ -26,13 +26,13 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: S3Upload
-                  name: S3Upload_1
-                  identifier: S3Upload_1
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
                   spec:
-                    connectorRef: org.Aws
-                    region: us-east-1
-                    bucket: abc123333333
-                    sourcePath: ssssssss
+                    connectorRef: account.harnessImage
+                    repo: ABC
+                    tags:
+                      - DELEGATE_TAGS="linux-arm64"
         delegateSelectors:
           - docker-delegate-new
