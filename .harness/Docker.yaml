@@ -31,7 +31,7 @@ pipeline:
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: account.harnessImage
-                    repo: JanjanamSurekha/H-R
+                    repo: jvtsdockerhub/docker
                     tags:
                       - DELEGATE_TAGS="linux-arm64"
                     dockerfile: Image1
