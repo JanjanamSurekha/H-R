@@ -31,8 +31,9 @@ pipeline:
                   identifier: BuildAndPushDockerRegistry_1
                   spec:
                     connectorRef: account.harnessImage
-                    repo: ABC
+                    repo: JanjanamSurekha/H-R
                     tags:
                       - DELEGATE_TAGS="linux-arm64"
+                    dockerfile: Image1
         delegateSelectors:
           - docker-delegate-new
