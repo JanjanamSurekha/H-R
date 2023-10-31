@@ -36,4 +36,4 @@ pipeline:
                       - DELEGATE_TAGS="linux-arm64"
                     dockerfile: Image1
         delegateSelectors:
-          - docker-delegate-nnn
+          - docker-delegate-n
