@@ -34,3 +34,5 @@ pipeline:
                     region: us-east-1
                     bucket: abc123333333
                     sourcePath: ssssssss
+        delegateSelectors:
+          - docker-delegate-new
