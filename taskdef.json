@@ -2,15 +2,15 @@
     "requiresCompatibilities": [
         "FARGATE"
     ],
-    "family": "mphasis-task25",
+    "family": "mph1",
     "containerDefinitions": [
         {
-            "name": "mphasis-task25",
-            "image": "docker.io/httpd",
+            "name": "mph1-con",
+            "image": "nginx:latest",
             "essential": true,
             "portMappings": [
                 {
-                    "name": "mphasis-task25",
+                    "name": "mph1",
                     "containerPort": 80,
                     "hostPort": 80,
                     "protocol": "tcp",
@@ -23,5 +23,5 @@
     "networkMode": "awsvpc",
     "memory": "3 GB",
     "cpu": "1 vCPU",
-    "executionRoleArn": "arn:aws:iam::832249129843:role/ecsTaskExecutionRole"
+    "executionRoleArn": "arn:aws:iam::582251705870:role/ecsTaskExecutionRole"
 }
